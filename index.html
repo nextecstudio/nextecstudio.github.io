@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NexTec Studio – Building smart Android apps</title>
+<meta name="description" content="Official developer page of NexTec Studio. High-utility, secure, and user-friendly Android applications.">
+<link rel="icon" type="image/png" href="assets/icon.png?v=2">
+<style>
+  :root {
+    --bg: #0d0f24;
+    --bg2: #1a1650;
+    --card: rgba(255,255,255,.06);
+    --card-border: rgba(255,255,255,.12);
+    --text: #f2f4ff;
+    --muted: #a9b0e6;
+    --accent: #38c6f4;
+    --accent2: #5b6cf0;
+    --play: #3ddc84;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    color: var(--text);
+    background: radial-gradient(1200px 600px at 80% -10%, #2a2670 0%, transparent 60%),
+                radial-gradient(900px 500px at -10% 40%, #14305a 0%, transparent 60%),
+                linear-gradient(160deg, var(--bg), var(--bg2));
+    background-attachment: fixed;
+    min-height: 100vh;
+    line-height: 1.6;
+  }
+  a { color: inherit; text-decoration: none; }
+  .wrap { max-width: 920px; margin: 0 auto; padding: 0 20px; }
+
+  /* Hero */
+  .hero { text-align: center; padding: 48px 0 28px; }
+  .hero-banner {
+    width: 100%; border-radius: 22px;
+    border: 1px solid var(--card-border);
+    box-shadow: 0 20px 60px rgba(0,0,0,.45), 0 0 80px rgba(56,198,244,.12);
+    display: block;
+  }
+  .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+  .intro { text-align: left; margin-top: 30px; }
+  .intro-row { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+  .intro h1 { font-size: clamp(2.2rem, 8vw, 3.2rem); font-weight: 400; color: #f1f1f1; letter-spacing: -.5px; line-height: 1.15; }
+  .intro-icon { width: 58px; height: 58px; border-radius: 50%; flex-shrink: 0; box-shadow: 0 0 0 2px rgba(56,198,244,.25); }
+  .intro .tagline { font-size: clamp(1.15rem, 4.4vw, 1.5rem); font-weight: 300; line-height: 1.5; color: #e3e3e3; margin: 14px 0 0; max-width: none; }
+  .hero p strong { color: var(--text); }
+
+  .badges { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-top: 22px; }
+  .badge {
+    font-size: .82rem; font-weight: 600; padding: 7px 14px; border-radius: 999px;
+    background: var(--card); border: 1px solid var(--card-border); color: var(--muted);
+  }
+  .badge b { color: var(--accent); }
+
+  /* Sections */
+  section { padding: 18px 0; }
+  h2 { font-size: 1.5rem; margin-bottom: 16px; display: flex; align-items: center; gap: 10px; }
+  h2::after { content: ""; flex: 1; height: 1px; background: linear-gradient(90deg, var(--card-border), transparent); }
+
+  /* App cards */
+  .apps { display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 20px; }
+  .app {
+    background: var(--card); border: 1px solid var(--card-border);
+    border-radius: 22px; padding: 28px 24px;
+    backdrop-filter: blur(8px);
+    display: flex; flex-direction: column; align-items: flex-start;
+    transition: transform .25s, border-color .25s, box-shadow .25s;
+  }
+  .app:hover { transform: translateY(-5px); border-color: rgba(56,198,244,.5); box-shadow: 0 16px 40px rgba(0,0,0,.4); }
+  .app img { align-self: center; width: 84px; height: 84px; border-radius: 20px; box-shadow: 0 8px 22px rgba(0,0,0,.4); }
+  .app h3 { font-size: 1.35rem; margin: 18px 0 10px; align-self: center; text-align: center; }
+  .app p { color: var(--muted); flex: 1; margin-bottom: 22px; }
+  .play {
+    display: flex; align-items: center; justify-content: center; gap: 10px; width: 100%;
+    background: var(--play); color: #06210f; font-weight: 700;
+    padding: 11px 20px; border-radius: 12px;
+    transition: filter .2s, transform .2s;
+  }
+  .play:hover { filter: brightness(1.08); transform: scale(1.03); }
+  .play svg { width: 20px; height: 20px; fill: #06210f; }
+
+  /* Links */
+  .links { display: grid; gap: 12px; }
+  .link {
+    display: flex; align-items: center; justify-content: space-between; gap: 14px;
+    background: var(--card); border: 1px solid var(--card-border);
+    border-radius: 14px; padding: 15px 18px;
+    transition: border-color .2s, background .2s;
+  }
+  .link:hover { border-color: var(--accent); background: rgba(56,198,244,.08); }
+  .link span:first-child { font-weight: 600; }
+  .link span:last-child { color: var(--accent); font-size: .95rem; word-break: break-all; text-align: right; }
+
+  footer { text-align: center; padding: 15px 0 36px; color: var(--muted); font-size: .9rem; }
+  footer strong { color: var(--text); }
+  footer .heart { color: #ff5d73; }
+
+  @media (max-width: 520px) {
+    .link { flex-direction: column; align-items: flex-start; gap: 4px; }
+    .link span:last-child { text-align: left; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="hero">
+    <img class="hero-banner" src="assets/header.jpg?v=2" alt="NexTec Studio – Building smart Android apps">
+    <div class="intro">
+      <div class="intro-row">
+        <h1>NexTec Studio</h1>
+        <img class="intro-icon" src="assets/icon.png?v=2" alt="NexTec Studio logo">
+      </div>
+      <p class="tagline">NexTec Studio builds smart and reliable Android apps to make everyday life easier. Install and explore our apps today.</p>
+    </div>
+  </header>
+
+  <section id="apps">
+    <h2>🚀 Our Featured Apps</h2>
+    <div class="apps">
+
+      <article class="app">
+        <img src="assets/pcshare.png?v=2" alt="PC Share app icon">
+        <h3>PC Share</h3>
+        <p>Seamless mobile file-sharing system for Android. Share files between your phone and PC over your local network, quickly and easily.</p>
+        <a class="play" href="https://play.google.com/store/apps/details?id=com.nextec.pcshare" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.6 1.8c-.3.2-.5.6-.5 1.1v18.2c0 .5.2.9.5 1.1l10.2-10.2L3.6 1.8zm11.6 8.9 2.9-2.9L5.6 1.1l9.6 9.6zm0 2.6-9.6 9.6 12.5-6.7-2.9-2.9zm4.2-3.7-3 3 3 3 3.1-1.7c.9-.5.9-1.7 0-2.2l-3.1-2.1z"/></svg>
+          Get it on Google Play
+        </a>
+      </article>
+
+      <article class="app">
+        <img src="assets/nexcamera.png?v=2" alt="NexCamera app icon">
+        <h3>Nex Camera</h3>
+        <p>Advanced custom Android camera application with multiple shooting modes and features.</p>
+        <a class="play" href="https://play.google.com/store/apps/details?id=com.nextec.nexcam" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.6 1.8c-.3.2-.5.6-.5 1.1v18.2c0 .5.2.9.5 1.1l10.2-10.2L3.6 1.8zm11.6 8.9 2.9-2.9L5.6 1.1l9.6 9.6zm0 2.6-9.6 9.6 12.5-6.7-2.9-2.9zm4.2-3.7-3 3 3 3 3.1-1.7c.9-.5.9-1.7 0-2.2l-3.1-2.1z"/></svg>
+          Get it on Google Play
+        </a>
+      </article>
+
+    </div>
+  </section>
+
+  <section id="links">
+    <h2>🌐 Official Links</h2>
+    <div class="links">
+      <a class="link" href="app-ads.txt"><span>📄 App Ads</span><span>app-ads.txt</span></a>
+      <a class="link" href="mailto:NexTecStudioDev@gmail.com"><span>✉️ Support Contact</span><span>NexTecStudioDev@gmail.com</span></a>
+    </div>
+  </section>
+
+  <footer>
+    <p>Made with <span class="heart">❤</span> by <strong>NexTec Studio</strong></p>
+    <p>© NexTec Studio. All rights reserved.</p>
+  </footer>
+
+</div>
+</body>
+</html>
